@@ -1,0 +1,110 @@
+{
+  "label": "Coinbase Pro User",
+  "name": "coinbase-pro-user",
+  "apiVersion": "v1",
+  "internal": false,
+  "configurationType": "PER_USER",
+  "deployment": {
+    "profiles": [
+      {
+        "name": "default",
+        "label": "Default",
+        "memory": 256,
+        "description": "Default configuration"
+      }
+    ],
+    "allowMultipleInstances": false
+  },
+  "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/coinbase-pro-user.png",
+  "configurationHelpUrl": "/endpoints_coinbase-pro-user.html_pro#configuration",
+  "status": "ACTIVE",
+  "stores": [],
+  "events": [
+    {
+      "label": "Webhook",
+      "name": "webhook",
+      "description": "Happens when a Coinbase Pro User hits the endpoint URL."
+    }
+  ],
+  "functions": [
+    {
+      "label": "GET",
+      "name": "_get"
+    },
+    {
+      "label": "POST",
+      "name": "_post"
+    },
+    {
+      "label": "PUT",
+      "name": "_put"
+    },
+    {
+      "label": "DELETE",
+      "name": "_delete"
+    }
+  ],
+  "scripts": [
+    "functions.js",
+    "coinbase-pro-user-helpers.js"
+  ],
+  "configuration": [
+    {
+      "label": "Server",
+      "name": "server",
+      "type": "buttonsGroup",
+      "required": true,
+      "defaultValue": "sandbox",
+      "typeOptions": {
+        "allowCustom": true,
+        "possibleValues": [
+          {
+            "label": "Sandbox",
+            "name": "sandbox"
+          },
+          {
+            "label": "Production",
+            "name": "production"
+          }
+        ]
+      }
+    }
+  ],
+  "userConfiguration": [
+    {
+      "name": "apiKey",
+      "label": "API key",
+      "type": "text",
+      "description": "A valid API Key for your user account. Get by visiting your API access in settings tab.",
+      "required": true,
+      "visibility": "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+    },
+    {
+      "name": "apiSecret",
+      "label": "API Secret",
+      "type": "text",
+      "description": "A valid API Secret for your user account. Get by visiting your API access in settings tab.",
+      "required": true,
+      "visibility": "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+    },
+    {
+      "name": "passphrase",
+      "label": "Passphrase",
+      "description": "The Passphrase will be provided by you to further secure your API access.",
+      "type": "text",
+      "required": true,
+      "visibility": "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+    },
+    {
+      "name": "connectButton",
+      "label": "Connect to Service",
+      "type": "button",
+      "typeOptions": {
+        "color": "primary",
+        "icon": "zmdi-play",
+        "action": "utils.connectToService();"
+      },
+      "visibility": "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+    }
+  ]
+}
